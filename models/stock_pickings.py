@@ -14,7 +14,7 @@ class StockPickings(models.Model):
     #             if i.name in self.origin:
     #                 # self.x_origin=i.product_id.name
     #                 self.write({'x_origin':i.product_id.name})
-    
+    @api.constrains('scheduled_date')
     @api.onchange('x_origin')
     def get_origin(self):
 
