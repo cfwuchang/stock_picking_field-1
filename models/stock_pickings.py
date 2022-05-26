@@ -21,6 +21,8 @@ class StockPickings(models.Model):
         att_model = self.env['mrp.production']
         query = [("state","!=","draft"),("state","!=","cancel"),("state","!=","done")]
         for i in att_model.search(query):
-            if i.name in self.origin:
-                # self.x_origin=i.product_id.name
-                self.write({'x_origin':i.product_id.name})
+            try:
+                if i.name in self.origin:
+                    self.write({'x_origin':i.product_id.name})
+            except:
+                pass
